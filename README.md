@@ -8,7 +8,11 @@ I've removed the prompt so it's harder to search github for my solution to this 
 
 # Kyle Notes
 It doesn't specify that the matrix has to be a square matrix, even though the example shows a square matrix. For the time being, we'll assume a square matrix and hence the matrix span will equal the row count.
-However, I'll encode it to the public interface defined but allow for overloads that account for non-square matrices. Here's the use-cases:
+However, I'll encode it to the public interface defined but allow for overloads that account for non-square matrices. 
+
+Performance-wise, I believe this solution must be pretty close to O(n * m), where n and m are the independent column and row counts, or if square, then n^2. There may be a multiplier of 2 or 3 for the transposition algorithm, creating an extra loop in the constructor, but removing a loop from the Find method. It felt like a decent trade off, considering it's much easier to understand than attempting to re-implement the algorithm traversing the matrix in a different way. That's not hard either, but I liked this approach for understandability rather than copy/pasting some code.
+
+Here's the use-cases:
 
 Givens:
 1. An IEnumerable<string> representing the matrix of letters within which to search, similar to a word-find puzzle; matrix size *shall not* exceed 64x64.
