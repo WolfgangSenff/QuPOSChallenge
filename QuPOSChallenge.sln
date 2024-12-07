@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuPOSChallenge", "QuPOSChallenge\QuPOSChallenge.csproj", "{D26255FB-6769-4067-94CD-FBF023DDB947}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D26255FB-6769-4067-94CD-FBF023DDB947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D26255FB-6769-4067-94CD-FBF023DDB947}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D26255FB-6769-4067-94CD-FBF023DDB947}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D26255FB-6769-4067-94CD-FBF023DDB947}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {741DB145-9D82-4C53-B10D-2E089E946294}
+	EndGlobalSection
+EndGlobal
