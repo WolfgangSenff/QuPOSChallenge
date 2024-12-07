@@ -1,5 +1,8 @@
 # QuPOSChallenge
 
+# To Run:
+If you're on a Mac like I am, you can open the top-most folder in VS Code, then open a new terminal and just type "dotnet run". This will run through my own test-cases. Some effort will likely be required to input your own test-cases, but note that they do not really have to follow the approach that I took...I did mine as I did to simplify the testing process.
+
 # Prompt
 I've removed the prompt so it's harder to search github for my solution to this problem. While I'm leaving the name of the repository, the prompt being removed should still cut down on leaked challenge info.
 
