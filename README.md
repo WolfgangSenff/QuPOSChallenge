@@ -1,31 +1,7 @@
 # QuPOSChallenge
 
 # Prompt
-Presented with a character matrix and a large stream of words, your task is to create a Class
-that searches the matrix to look for the words from the word stream. Words may appear
-horizontally, from left to right, or vertically, from top to bottom. In the example below, the word
-stream has four words and the matrix contains only three of those words ("chill", "cold" and
-"wind"):
-
-The search code must be implemented as a class with the following interface:
-public class WordFinder
-{
-public WordFinder(IEnumerable<string> matrix) {
-...
-}
-public IEnumerable<string> Find(IEnumerable<string> wordstream)
-{ ...
-}
-}
-The WordFinder constructor receives a set of strings which represents a character matrix. The
-matrix size does not exceed 64x64, all strings contain the same number of characters. The
-"Find" method should return the top 10 most repeated words from the word stream found in the
-matrix. If no words are found, the "Find" method should return an empty set of strings. If any
-word in the word stream is found more than once within the stream, the search results
-should count it only once
-Due to the size of the word stream, the code should be implemented in a high performance
-fashion both in terms of efficient algorithm and utilization of system resources. Where possible,
-please include your analysis and evaluation.
+I've removed the prompt so it's harder to search github for my solution to this problem. While I'm leaving the name of the repository, the prompt being removed should still cut down on leaked challenge info.
 
 # Kyle Notes
 It doesn't specify that the matrix has to be a square matrix, even though the example shows a square matrix. For the time being, we'll assume a square matrix and hence the matrix span will equal the row count.
@@ -52,7 +28,7 @@ Some more programmer notes for my own sanity:
 3. Two separate loops using different matrix traversal methods would work: one for horizontal, one for vertical. Consider if such a design is better or just fancier; requires the bail-out checks to switch which way they're counting, columns vs rows, so might not be worth it over just copy/pasting and changing the code.
 4. Another option similar to 3 would be to actually just transpose the matrix and run the same exact algorithm on it. Check if matrices are iterable in C# and consider converting to one in order to support such operations, as this would let you focus on just one algorithm. Further, while we don't know the big O of Microsoft's matrix transpose, it's surely pretty good, and always best to rely on things the language team has implemented in such cases. And finally, this would allow you to just make both matrices immediately and then run the algorithm on both using threads, ensuring that results will be as fast as possible and not dependent on each other; just have to ensure that the results are independent and then put back together, sort of like a map reduce calculation (specifically reducing the results).
 5. Thinking about 4, would map-reduce just solve this issue way more easily? It seems like if you took the matrix and its transpose and looped over values and mapped the word inputstream, then reduced the results together for the counts, that would solve the issue. Consider that as you write more.
-6. Thinking through the problem, is it possible to solve this with preprocessing? Just take the row length, put the letters from said row together into a string, add the strings to a separate iterable, then just loop over the word inputstream counting the instances of the word within the main string. AsSpan() on a string can be used for ultra-fast searching of said string, ensuring contiguous memory allocation. Actually, Span<T> takes in an array of values, so don't even have to convert it to a string in the first place, sweet! That'll be a lot faster and memory minimal, as well as easier to code, since Count() is extended to it due to the implementation.
+6. Thinking through the problem, is it possible to solve this with preprocessing? Just take the row length, put the letters from said row together into a string, add the strings to a separate iterable, then just loop over the word inputstream counting the instances of the word within the main string. AsSpan() on a string can be used for ultra-fast searching of said string, ensuring contiguous memory allocation. Actually, Span<T> takes in an array of values, so don't even have to convert it to a string in the first place, sweet! That'll be a lot faster and memory minimal, as well as easier to code, since Count() is extended to it due to the implementation. This whole note might totally negate being required to make any sort of fancy algorithm to count these values, as this will always, always be faster than iterating over normal enumerables.
 7. For the matrix of:
 ```
 aaa
@@ -61,4 +37,5 @@ aaa
 ```
 
 And a word input stream of `aa`, would this return 12, or 6? Unclear based on the requirements.
-8. After some research, it seems like Matrix<T> doesn't exist, so make it.
+8. After some research, it seems like Matrix<T> doesn't exist, so make it. Note that Span<T> cannot be used in the case of multithreading! This is because it is a ref struct, meaning it is strictly limited to the stack; since it is, it cannot be used in multithreading scenarios, where heap allocations may occur. Thus, we have to use a class instead of our own ref struct, but we can still adhere to good programming by utilizing a record.
+9. Span<T> is not usable, but Memory<T> should be! Actually, utilizing either of these values is causing me a lot of grief, so, in order to keep it relatively short, I'm switching to just using an array of strings and removing generics altogether, see code for more.
