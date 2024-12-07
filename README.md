@@ -36,6 +36,7 @@ aaa
 aaa
 ```
 
-And a word input stream of `aa`, would this return 12, or 6? Unclear based on the requirements.
-8. After some research, it seems like Matrix<T> doesn't exist, so make it. Note that Span<T> cannot be used in the case of multithreading! This is because it is a ref struct, meaning it is strictly limited to the stack; since it is, it cannot be used in multithreading scenarios, where heap allocations may occur. Thus, we have to use a class instead of our own ref struct, but we can still adhere to good programming by utilizing a record.
-9. Span<T> is not usable, but Memory<T> should be! Actually, utilizing either of these values is causing me a lot of grief, so, in order to keep it relatively short, I'm switching to just using an array of strings and removing generics altogether, see code for more.
+And a word input stream of `aa`, would this return 12, or 6? Unclear based on the requirements. Let's assume we want to see 12 instead of 6, and hence we'll have to use a non-replacement method (replacement would under count if double-letters appear in a single word, such as Wellington.
+8. Also assumes InvariantCultureIgnoreCase as the comparison type, but easy to update.
+9. After some research, it seems like Matrix<T> doesn't exist, so make it. Note that Span<T> cannot be used in the case of multithreading! This is because it is a ref struct, meaning it is strictly limited to the stack; since it is, it cannot be used in multithreading scenarios, where heap allocations may occur. Thus, we have to use a class instead of our own ref struct, but we can still adhere to good programming by utilizing a record.
+10. Span<T> is not usable, but Memory<T> should be! Actually, utilizing either of these values is causing me a lot of grief, so, in order to keep it relatively short, I'm switching to just using an array of strings and removing generics altogether, see code for more.
