@@ -52,7 +52,7 @@ public record StringMatrix(int Columns, int Rows, IEnumerable<string> SeedData)
 
     int index = 0;
     string rowWord = Data[row];
-    while(-1 != (index = rowWord.IndexOf(word, index)))
+    while(-1 != (index = rowWord.IndexOf(word, index, StringComparison.InvariantCultureIgnoreCase)))
     { // This weird-looking loop ensures that looking for "aa" in "aaaaaaaaa" returns 12 instead of a replacement method, which would return only 6.
       count++;
       index++;
