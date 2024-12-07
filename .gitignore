@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Remove iOS-specific nonsense folders
+**/.DS_Store
+.DS_Store
