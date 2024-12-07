@@ -60,4 +60,5 @@ aaa
 aaa
 ```
 
-And a word input stream of `aa`, would this return 12, or 6? Unclear based on the requirements. 
+And a word input stream of `aa`, would this return 12, or 6? Unclear based on the requirements.
+8. After some research, it seems like Matrix<T> doesn't exist, so make it.
